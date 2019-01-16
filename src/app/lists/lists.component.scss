@@ -1,0 +1,24 @@
+section {
+    background: linear-gradient(to bottom, rgb(226, 114, 8), rgb(236, 174, 3));
+    width: 30vw;
+    border-radius: 15px;
+    margin: 10px;
+    text-align: center;
+    padding-bottom: 2vh;
+}
+
+h1 {
+    font-size: 5vh;
+    color: white;
+}
+
+.close {
+    font-size: 3vh;
+    padding-left: 10px;
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+}

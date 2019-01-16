@@ -1,0 +1,9 @@
+<section>
+  <h1>{{ list.name }}
+      <input type="button" class="close" value="❌" (click)="delete(list)">
+  </h1>
+  <div *ngIf="list.tasks">
+    <div *ngFor="let task of list.task"></div>
+  </div>
+  <input type="text" placeholder="Add task" >
+</section>

@@ -3,10 +3,14 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { TrelloPageComponent } from './trello-page/trello-page.component';
+import { ListsComponent } from './lists/lists.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    TrelloPageComponent,
+    ListsComponent
   ],
   imports: [
     BrowserModule,

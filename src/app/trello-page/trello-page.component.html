@@ -1,0 +1,10 @@
+<header>
+  <input class="input-agregar" type="text" placeholder="Add list" (keyup.enter)="addNewList($event)">
+  <button class="boton-agregar" (click)="addNewList($event)">➕</button>
+</header>
+
+<section>
+  <div class="body-section" *ngIf="dataTrello">
+    <app-lists *ngFor="let element of dataTrello.lists" [list]="element" (deleteList)="deleteTrelloList($event)"></app-lists>
+  </div>
+</section>
