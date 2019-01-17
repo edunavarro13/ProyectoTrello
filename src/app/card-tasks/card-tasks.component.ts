@@ -22,6 +22,8 @@ export class CardTasksComponent implements OnInit {
 
   modTask: boolean = false;
   watchTask: boolean = false;
+  modDescTask: boolean = false;
+
   color: string;
   constructor() {}
 
@@ -48,7 +50,13 @@ export class CardTasksComponent implements OnInit {
     }
   }
 
-  cambiaColorTarea(ev) {
+  updateDescriptionTask(ev) {    
+    this.task.description = ev.target.value;    
+    this.grandFatherService.updateTask(this.task);
+    this.modDescTask = false;
+  }
+
+  updateColorTask(ev) {
     this.task.color = this.color;
     this.grandFatherService.updateTask(this.task); // Puedo usar el mismo modificar ya que modifica toda la Tarea
   }

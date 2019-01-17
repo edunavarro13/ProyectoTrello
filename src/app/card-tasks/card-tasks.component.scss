@@ -3,7 +3,7 @@
 .card-index {
   display: grid;
   grid-template-columns: 3.5fr 5fr 0.5fr;
-  background: linear-gradient(to right, rgb(248, 44, 44), rgb(150, 50, 150));
+  background: linear-gradient(to bottom, rgb(248, 44, 44), rgb(150, 50, 150));
   align-items: center;
   width: 80%;
   height: 8vh;
@@ -27,14 +27,21 @@
 }
 
 .details-task {
-  background-color: silver;
+  background: linear-gradient(to top, rgb(248, 110, 110), rgb(150, 110, 150));
   width: 80%;
   margin-left: 10%;
   margin-right: 10%;
   margin-bottom: 2vh;
   box-sizing: border-box;
+  padding-top: 1vh;
+  padding-bottom: 1vh;
+  border-radius: 5px;
 }
 
 .size-small {
   width: 1.5vw;
+}
+
+.input-desc{
+    width: 60%;
 }

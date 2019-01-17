@@ -7,14 +7,20 @@
     <input *ngIf="!modTask" type="button" class="button-list button-edit" value="✏️" (click)="modTask = !modTask">
     <input *ngIf="modTask" type="button" class="button-list button-edit" value="📝" (click)="modTask = !modTask">
     <input type="button" class="button-list" value="❌" (click)="deleteCardTask()">
-    <input type="button" class="button-list" value="🔍" (click)="watchTask = !watchTask">
+    <input *ngIf="!watchTask" type="button" class="button-list" value="🔍" (click)="watchTask = !watchTask">
+    <input *ngIf="watchTask" type="button" class="button-list" value="👀" (click)="watchTask = !watchTask">
   </div>
   <div [style.background]="task.color" class="color-border">
   </div>
 </div>
 <div *ngIf="watchTask" class="details-task">
-  <p>Description: {{ task.description }} </p>
+  <p>
+    <label *ngIf="!modDescTask" (dblclick)="modDescTask = !modDescTask">Description: {{ task.description }}</label>
+    <input *ngIf="modDescTask" class="input-name input-desc" type="text" value="{{ task.description }}" placeholder="Description" (keyup.enter)="updateDescriptionTask($event)">
+    <input *ngIf="!modDescTask" type="button" class="button-list button-edit" value="✏️" (click)="modDescTask = !modDescTask">
+    <input *ngIf="modDescTask" type="button" class="button-list button-edit" value="📝" (click)="modDescTask = !modDescTask">
+  </p>
   <input type="checkbox" *ngIf="!task.complete">
   <input type="checkbox" *ngIf="task.complete" checked>✔️️
-  <input class="size-small" [(colorPicker)]="color" [style.background]="color" (colorPickerChange)="cambiaColorTarea($event)" />🖌
+  <input class="size-small" [(colorPicker)]="color" [style.background]="color" (colorPickerChange)="updateColorTask($event)" />🖌
 </div>
