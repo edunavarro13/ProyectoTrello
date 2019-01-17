@@ -4,7 +4,7 @@
 </header>
 
 <section>
-  <div class="body-section" *ngIf="dataTrello">
-    <app-lists *ngFor="let element of dataTrello.lists" [list]="element" (deleteList)="deleteTrelloList($event)"></app-lists>
+  <div class="body-section" *ngIf="service.getData()">
+    <app-lists *ngFor="let element of service.getData().lists" [list]="element" [serviceFather]="service"></app-lists>
   </div>
 </section>

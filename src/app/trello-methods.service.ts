@@ -10,6 +10,10 @@ export class TrelloMethodsService {
   constructor() { 
   }
 
+  getData() {
+    return this.dataTrello;
+  }
+
   addList(name: string) {
     let newlist: TaskList = {
       id: Date.now(),
@@ -24,12 +28,20 @@ export class TrelloMethodsService {
         lists: [newlist]
       };
     }
-    return this.dataTrello;
   }
 
   deleteList(listDel: TaskList) {
-    let pos = this.dataTrello.lists.indexOf(listDel);
-    this.dataTrello.lists.splice(pos, 1);
-    return this.dataTrello;
+    this.dataTrello.lists = this.dataTrello.lists.filter(elem => elem.id !== listDel.id);
+  }
+
+  updateList(listDel: TaskList) {
+    this.dataTrello.lists = this.dataTrello.lists.map(elem => {
+      if(elem.id == listDel.id) {
+        return listDel;
+      }
+      else {
+        return elem;
+      }
+    })
   }
 }

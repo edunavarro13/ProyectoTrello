@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Data, TaskList } from '../modelos.interface';
 import { TrelloMethodsService } from '../trello-methods.service';
 
 @Component({
@@ -9,19 +8,14 @@ import { TrelloMethodsService } from '../trello-methods.service';
 })
 export class TrelloPageComponent implements OnInit {
 
-  dataTrello: Data;
   constructor(private service: TrelloMethodsService) { }
 
   ngOnInit() {
   }
 
   addNewList(ev) {
-    this.dataTrello = this.service.addList(ev.target.value);
+    this.service.addList(ev.target.value);
     ev.target.value = '';
-  }
-
-  deleteTrelloList(ev: TaskList) {
-    this.dataTrello = this.service.deleteList(ev);
   }
 
 }

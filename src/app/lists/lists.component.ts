@@ -1,5 +1,16 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { TaskList } from '../modelos.interface';
+import {
+  Component,
+  OnInit,
+  Input,
+  Output,
+  EventEmitter
+} from '@angular/core';
+import {
+  TaskList
+} from '../modelos.interface';
+import {
+  TrelloMethodsService
+} from '../trello-methods.service';
 
 @Component({
   selector: 'app-lists',
@@ -9,14 +20,30 @@ import { TaskList } from '../modelos.interface';
 export class ListsComponent implements OnInit {
 
   @Input() list: TaskList;
+  @Input() serviceFather: TrelloMethodsService;
   @Output() deleteList = new EventEmitter < TaskList > ();
-  constructor() { }
 
-  ngOnInit() {
-  }
+  modName: boolean = false;
+
+  constructor() {}
+
+  ngOnInit() {}
 
   delete() {
-    this.deleteList.emit(this.list);
+    if (confirm(`Are you sure you want to delete the list: ${this.list.name}?`)) {
+      this.serviceFather.deleteList(this.list);
+    }
+  }
+  update(ev) {
+    // Comprobamos que no sea vacio
+    if (ev.target.value) {
+      this.list.name = ev.target.value;
+      this.serviceFather.updateList(this.list);
+      this.modName = false;
+    }
+    else {
+      alert(`List's name can not be empty!`);
+    }
   }
 
 }
