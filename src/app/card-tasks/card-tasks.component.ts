@@ -41,7 +41,7 @@ export class CardTasksComponent implements OnInit {
   updateNameTask(ev) {
     // Comprobamos que no sea vacio
     if (ev.target.value) {
-      this.task.name = ev.target.value;
+      this.task.name = ev.target.value.trim();
       this.grandFatherService.updateTask(this.task);
       this.modTask = false;
     }
@@ -51,7 +51,7 @@ export class CardTasksComponent implements OnInit {
   }
 
   updateDescriptionTask(ev) {    
-    this.task.description = ev.target.value;    
+    this.task.description = ev.target.value.trim();    
     this.grandFatherService.updateTask(this.task);
     this.modDescTask = false;
   }

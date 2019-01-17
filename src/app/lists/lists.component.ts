@@ -34,8 +34,8 @@ export class ListsComponent implements OnInit {
   }
   update(ev) {
     // Comprobamos que no sea vacio
-    if (ev.target.value) {
-      this.list.name = ev.target.value;
+    if (ev.target.value.trim()) {
+      this.list.name = ev.target.value.trim();
       this.serviceFather.updateList(this.list);
       this.modName = false;
     }
