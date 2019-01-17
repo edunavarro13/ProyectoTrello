@@ -1,4 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input
+} from '@angular/core';
 import {
   Task
 } from '../modelos.interface';
@@ -17,11 +21,17 @@ export class CardTasksComponent implements OnInit {
   @Input() grandFatherService: TrelloMethodsService;
 
   modTask: boolean = false;
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
     console.log("entra");
-    
+
+  }
+
+  deleteCardTask() {
+    if (confirm(`Are you sure you want to delete the task: ${this.task.name}?`)) {
+      this.grandFatherService.deleteTask(this.task);
+    }
   }
 
 }

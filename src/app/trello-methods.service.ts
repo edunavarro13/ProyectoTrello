@@ -6,6 +6,7 @@ import {
   TaskList,
   Task
 } from './modelos.interface';
+import { element } from '@angular/core/src/render3';
 
 @Injectable({
   providedIn: 'root'
@@ -67,5 +68,14 @@ export class TrelloMethodsService {
         tasks: [newtask]
       };
     }
+  }
+
+  deleteTask(task: Task) {
+    this.dataTrello.lists = this.dataTrello.lists.map( elem => {
+      if(elem.id === task.idList) {
+        elem.tasks = elem.tasks.filter( taskElem => taskElem.idTask !== task.idTask);
+      }
+      return elem;
+    });
   }
 }
