@@ -2,8 +2,10 @@
   <div>
     {{ task.name }}
   </div>
-  <div>
-    botones
+  <div class="controls">
+      <input *ngIf="!modTask" type="button" class="button-list button-edit" value="✏️" (click)="modTask = !modTask">
+      <input *ngIf="modTask" type="button" class="button-list button-edit" value="📝" (click)="modTask = !modTask">
+      <input type="button" class="button-list" value="❌" >
   </div>
   <div [style.background]="task.color" class="color-border">
   </div>

@@ -22,7 +22,7 @@ section {
 }
 
 .list-name {
-  font-size: 5vh;
+  font-size: 6vh;
   color: white;
 }
 
@@ -40,6 +40,7 @@ section {
   margin-bottom: 3vh;
   display: grid;
   grid-template-columns: 2fr 1fr;
+  align-items: center;
 }
 
 .controls {

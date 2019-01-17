@@ -15,6 +15,8 @@ export class CardTasksComponent implements OnInit {
 
   @Input() task: Task;
   @Input() grandFatherService: TrelloMethodsService;
+
+  modTask: boolean = false;
   constructor() { }
 
   ngOnInit() {
