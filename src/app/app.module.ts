@@ -8,6 +8,8 @@ import { TrelloPageComponent } from './trello-page/trello-page.component';
 import { ListsComponent } from './lists/lists.component';
 import { CardTasksComponent } from './card-tasks/card-tasks.component';
 
+// import { AlertIfModule } from 'alertifyjs';
+
 @NgModule({
   declarations: [
     AppComponent,

@@ -1,11 +1,13 @@
 <div class="card-index">
   <div>
-    {{ task.name }}
+      <label *ngIf="!modTask" class="list-name" (dblclick)="modTask = !modTask">{{ task.name }}</label>
+      <input *ngIf="modTask" class="input-name" type="text" value="{{ task.name }}" placeholder="Name" (keyup.enter)="updateTask($event)">
   </div>
   <div class="controls">
       <input *ngIf="!modTask" type="button" class="button-list button-edit" value="✏️" (click)="modTask = !modTask">
       <input *ngIf="modTask" type="button" class="button-list button-edit" value="📝" (click)="modTask = !modTask">
       <input type="button" class="button-list" value="❌" (click)="deleteCardTask()" >
+      <input type="button" class="button-list" value="🔍" (click)="deleteCardTask()" >
   </div>
   <div [style.background]="task.color" class="color-border">
   </div>

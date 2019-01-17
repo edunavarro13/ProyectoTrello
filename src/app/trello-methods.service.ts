@@ -78,4 +78,20 @@ export class TrelloMethodsService {
       return elem;
     });
   }
+
+  updateNameTask(taskUp: Task) {
+    this.dataTrello.lists = this.dataTrello.lists.map( elem => {
+      if(elem.id === taskUp.idList) {
+        elem.tasks = elem.tasks.map( taskElem => {
+          if(taskElem.idTask !== taskUp.idTask) {
+            return taskUp;
+          }
+          else {
+            return taskElem;
+          }
+        });
+      }
+      return elem;
+    });
+  }
 }

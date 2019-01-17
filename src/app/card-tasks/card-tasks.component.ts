@@ -34,4 +34,16 @@ export class CardTasksComponent implements OnInit {
     }
   }
 
+  updateTask(ev) {
+    // Comprobamos que no sea vacio
+    if (ev.target.value) {
+      this.task.name = ev.target.value;
+      this.grandFatherService.updateNameTask(this.task);
+      this.modTask = false;
+    }
+    else {
+      alert(`List's name can not be empty!`);
+    }
+  }
+
 }
