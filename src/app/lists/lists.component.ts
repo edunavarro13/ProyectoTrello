@@ -1,9 +1,7 @@
 import {
   Component,
   OnInit,
-  Input,
-  Output,
-  EventEmitter
+  Input
 } from '@angular/core';
 import {
   TaskList
@@ -21,9 +19,9 @@ export class ListsComponent implements OnInit {
 
   @Input() list: TaskList;
   @Input() serviceFather: TrelloMethodsService;
-  @Output() deleteList = new EventEmitter < TaskList > ();
 
   modName: boolean = false;
+  inputTask: string;
 
   constructor() {}
 
@@ -40,6 +38,17 @@ export class ListsComponent implements OnInit {
       this.list.name = ev.target.value;
       this.serviceFather.updateList(this.list);
       this.modName = false;
+    }
+    else {
+      alert(`List's name can not be empty!`);
+    }
+  }
+
+  newTask() {
+    // Comprobamos que no sea vacio
+    if (this.inputTask) {
+      this.serviceFather.addTask(this.inputTask, this.list);
+      this.inputTask = '';
     }
     else {
       alert(`List's name can not be empty!`);

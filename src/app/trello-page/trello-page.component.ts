@@ -1,5 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { TrelloMethodsService } from '../trello-methods.service';
+import {
+  Component,
+  OnInit
+} from '@angular/core';
+import {
+  TrelloMethodsService
+} from '../trello-methods.service';
 
 @Component({
   selector: 'app-trello-page',
@@ -8,14 +13,19 @@ import { TrelloMethodsService } from '../trello-methods.service';
 })
 export class TrelloPageComponent implements OnInit {
 
-  constructor(private service: TrelloMethodsService) { }
+  inputList: string;
 
-  ngOnInit() {
-  }
+  constructor(private service: TrelloMethodsService) {}
 
-  addNewList(ev) {
-    this.service.addList(ev.target.value);
-    ev.target.value = '';
+  ngOnInit() {}
+
+  addNewList() {
+    if (this.inputList) {
+      this.service.addList(this.inputList);
+      this.inputList = '';
+    } else {
+      alert(`List's name can not be empty!`);
+    }
   }
 
 }

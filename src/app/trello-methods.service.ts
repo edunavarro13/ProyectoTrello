@@ -1,5 +1,11 @@
-import { Injectable } from '@angular/core';
-import { Data, TaskList } from './modelos.interface';
+import {
+  Injectable
+} from '@angular/core';
+import {
+  Data,
+  TaskList,
+  Task
+} from './modelos.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -7,8 +13,7 @@ import { Data, TaskList } from './modelos.interface';
 export class TrelloMethodsService {
 
   dataTrello: Data;
-  constructor() { 
-  }
+  constructor() {}
 
   getData() {
     return this.dataTrello;
@@ -22,8 +27,7 @@ export class TrelloMethodsService {
     };
     try {
       this.dataTrello.lists.push(newlist);
-    }
-    catch(err) {
+    } catch (err) {
       this.dataTrello = {
         lists: [newlist]
       };
@@ -36,12 +40,32 @@ export class TrelloMethodsService {
 
   updateList(listDel: TaskList) {
     this.dataTrello.lists = this.dataTrello.lists.map(elem => {
-      if(elem.id == listDel.id) {
+      if (elem.id == listDel.id) {
         return listDel;
-      }
-      else {
+      } else {
         return elem;
       }
-    })
+    });
+  }
+
+  addTask(name: string, listElem: TaskList) { 
+    let newtask: Task = {
+      idList: listElem.id,
+      idTask: Date.now(),
+      name: name,
+      description: '',
+      complete: false,
+      color: '#ffffff'
+    };
+    let pos = this.dataTrello.lists.indexOf(listElem);
+    try {
+      this.dataTrello.lists[pos].tasks.push(newtask);
+    } catch (err) {
+      this.dataTrello.lists[pos] = {
+        id: this.dataTrello.lists[pos].id,
+        name: this.dataTrello.lists[pos].name,
+        tasks: [newtask]
+      };
+    }
   }
 }

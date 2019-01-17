@@ -1,6 +1,6 @@
 <header>
-  <input class="input-agregar" type="text" placeholder="Add list" (keyup.enter)="addNewList($event)">
-  <button class="boton-agregar" (click)="addNewList($event)">➕</button>
+  <input [(ngModel)]="inputList" class="input-agregar" type="text" placeholder="Add list" (keyup.enter)="addNewList()">
+  <button class="boton-agregar" (click)="addNewList()">➕</button>
 </header>
 
 <section>
