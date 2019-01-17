@@ -8,6 +8,7 @@ import { TrelloPageComponent } from './trello-page/trello-page.component';
 import { ListsComponent } from './lists/lists.component';
 import { CardTasksComponent } from './card-tasks/card-tasks.component';
 
+import { ColorPickerModule } from 'ngx-color-picker';
 // import { AlertIfModule } from 'alertifyjs';
 
 @NgModule({
@@ -15,12 +16,13 @@ import { CardTasksComponent } from './card-tasks/card-tasks.component';
     AppComponent,
     TrelloPageComponent,
     ListsComponent,
-    CardTasksComponent
+    CardTasksComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    ColorPickerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

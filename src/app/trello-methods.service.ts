@@ -79,11 +79,11 @@ export class TrelloMethodsService {
     });
   }
 
-  updateNameTask(taskUp: Task) {
+  updateTask(taskUp: Task) {
     this.dataTrello.lists = this.dataTrello.lists.map( elem => {
       if(elem.id === taskUp.idList) {
         elem.tasks = elem.tasks.map( taskElem => {
-          if(taskElem.idTask !== taskUp.idTask) {
+          if(taskElem.idTask === taskUp.idTask) {
             return taskUp;
           }
           else {

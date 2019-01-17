@@ -2,7 +2,7 @@
 
 .card-index {
   display: grid;
-  grid-template-columns: 3fr 5fr 1fr;
+  grid-template-columns: 3.5fr 5fr 0.5fr;
   background: linear-gradient(to right, rgb(248, 44, 44), rgb(150, 50, 150));
   align-items: center;
   width: 80%;
@@ -13,6 +13,7 @@
   border-radius: 5px;
   color: white;
   font-size: 5vh;
+  box-sizing: border-box;
 }
 
 .color-border {
@@ -22,5 +23,18 @@
 }
 
 .card-index:hover .controls {
-    opacity: 1;
-  }
+  opacity: 1;
+}
+
+.details-task {
+  background-color: silver;
+  width: 80%;
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-bottom: 2vh;
+  box-sizing: border-box;
+}
+
+.size-small {
+  width: 1.5vw;
+}

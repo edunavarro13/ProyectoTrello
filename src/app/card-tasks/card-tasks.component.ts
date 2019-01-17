@@ -21,6 +21,8 @@ export class CardTasksComponent implements OnInit {
   @Input() grandFatherService: TrelloMethodsService;
 
   modTask: boolean = false;
+  watchTask: boolean = false;
+  color: string;
   constructor() {}
 
   ngOnInit() {
@@ -34,16 +36,21 @@ export class CardTasksComponent implements OnInit {
     }
   }
 
-  updateTask(ev) {
+  updateNameTask(ev) {
     // Comprobamos que no sea vacio
     if (ev.target.value) {
       this.task.name = ev.target.value;
-      this.grandFatherService.updateNameTask(this.task);
+      this.grandFatherService.updateTask(this.task);
       this.modTask = false;
     }
     else {
       alert(`List's name can not be empty!`);
     }
+  }
+
+  cambiaColorTarea(ev) {
+    this.task.color = this.color;
+    this.grandFatherService.updateTask(this.task); // Puedo usar el mismo modificar ya que modifica toda la Tarea
   }
 
 }
