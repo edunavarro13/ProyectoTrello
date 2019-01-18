@@ -19,8 +19,6 @@
       <input *ngIf="!modDescTask" type="button" class="button-list button-edit" value="✏️" (click)="modDescTask = !modDescTask">
       <input *ngIf="modDescTask" type="button" class="button-list button-edit" value="📝" (click)="modDescTask = !modDescTask">
     </p>
-    <input type="checkbox" *ngIf="!task.complete">
-    <input type="checkbox" *ngIf="task.complete" checked>✔️️
     <input class="size-small" [(colorPicker)]="color" [style.background]="color" (colorPickerChange)="updateColorTask($event)" />🖌
   </div>
 </div>

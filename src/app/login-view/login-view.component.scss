@@ -1,0 +1,58 @@
+header {
+  height: 13vh;
+  width: auto;
+  background: linear-gradient(to bottom, rgb(4, 4, 182), rgb(4, 97, 236));
+  display: grid;
+  grid-template-columns: 6fr 1fr;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  box-sizing: border-box;
+  padding-left: 5vw;
+  padding-right: 2vw;
+  border-bottom: 1px silver solid;
+}
+
+section {
+  min-height: 87vh;
+  width: auto;
+  background: linear-gradient(to bottom, rgb(226, 114, 8), rgb(236, 174, 3));
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.to-reg-log {
+  height: 100%;
+  color: white;
+  font-size: 3vh;
+  background-color: Transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+  border-left: 1px silver solid;
+  border-right: 1px silver solid;
+}
+
+.input-agregar {
+  border-radius: 5px;
+  height: 5vh;
+  width: 30vw;
+  background: linear-gradient(to bottom, rgb(180, 180, 180), rgb(236, 236, 236));
+  margin-bottom: 3vh;
+}
+
+.button-submit {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+}
+
+label {
+    color: white;
+    font-size: 3vh;
+}
