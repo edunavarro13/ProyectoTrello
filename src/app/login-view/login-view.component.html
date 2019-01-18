@@ -1,0 +1,11 @@
+<h1>Login</h1>
+<p>
+    <input type="button" routerLink="/register" routerLinkActive="active" value="Register">
+</p>
+<div>
+  <form (submit)="login()">
+    <input type="text" placeholder="Username" name="username" [(ngModel)]="usernameLogin">
+    <input type="password" placeholder="Password" name="pass" [(ngModel)]="passLogin">
+    <input type="submit" value="Login">
+  </form>
+</div>
