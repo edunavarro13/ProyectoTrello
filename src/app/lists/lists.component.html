@@ -2,7 +2,7 @@
   <div class="section-list-name">
     <div>
       <label *ngIf="!modName" class="list-name" (dblclick)="modName = !modName">{{ list.name }}</label>
-      <input *ngIf="modName" class="input-name" type="text" value="{{ list.name }}" placeholder="Name" (keyup.enter)="update($event)">
+      <input *ngIf="modName" class="input-name" type="text" value="{{ list.name }}" placeholder="Name" (keyup.enter)="update($event)" (blur)="modName = !modName">
     </div>
     <div class="controls">
       <input *ngIf="!modName" type="button" class="button-list button-edit" value="✏️" (click)="modName = !modName">

@@ -56,7 +56,8 @@ export class TrelloMethodsService {
       name: name,
       description: '',
       complete: false,
-      color: '#ffffff'
+      color: '#ffffff',
+      expiration: null
     };
     let pos = this.dataTrello.lists.indexOf(listElem);
     try {

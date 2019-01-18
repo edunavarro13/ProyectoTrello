@@ -5,6 +5,7 @@ export interface Task {
   description: string;
   complete: boolean;
   color: string;
+  expiration: Date;
 }
 
 export interface TaskList {
