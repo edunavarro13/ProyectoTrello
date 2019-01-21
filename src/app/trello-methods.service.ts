@@ -84,7 +84,7 @@ export class TrelloMethodsService {
   }
 
   deleteTask(taskId: number) {
-    this.api.deleteTask(taskId).then(message => console.log(message)).catch(message => {      
+    this.api.deleteTask(taskId).then(message => console.log(message)).catch(() => {      
       this.loadDataFromBackend();
     });
   }
