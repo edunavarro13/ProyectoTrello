@@ -33,8 +33,8 @@ export class CardTasksComponent implements OnInit {
   }
 
   deleteCardTask() {
-    if (confirm(`Are you sure you want to delete the task: ${this.task.name}?`)) {
-      this.grandFatherService.deleteTask(this.task);
+    if (confirm(`Are you sure you want to delete ALL THE TASKS?`)) {
+      this.grandFatherService.deleteTask(this.task.idList);
     }
   }
 

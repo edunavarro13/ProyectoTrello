@@ -15,14 +15,15 @@ import { Router } from '@angular/router';
 })
 export class TrelloMethodsService {
 
-  dataTrello: Data;
+  dataTrello: { lists: Array<TaskList> } = {
+    lists: [],
+  };
   constructor(private api: TrelloApiService, private router: Router) {}
 
   loadDataFromBackend() {
     this.api
       .getLists()
       .then((rawLists: Array<TaskList>) => {
-        console.log(rawLists);
         const lists = rawLists.map(rawList => ({
           id: rawList.id,
           name: rawList.name,
@@ -37,7 +38,7 @@ export class TrelloMethodsService {
               name: rawTask.task,
               description: '',
               complete: false,
-              color: 'white'
+              color: '#ffffff'
             }));
             return list;
           }),
@@ -54,22 +55,16 @@ export class TrelloMethodsService {
   }
 
   addList(name: string) {
-    let newlist: TaskList = {
-      id: Date.now(),
-      name: name,
-      tasks: []
-    };
-    try {
-      this.dataTrello.lists.push(newlist);
-    } catch (err) {
-      this.dataTrello = {
-        lists: [newlist]
-      };
-    }
+    this.api.newList(name).then(message => {      
+      this.loadDataFromBackend();
+    });
   }
 
   deleteList(listDel: TaskList) {
-    this.dataTrello.lists = this.dataTrello.lists.filter(elem => elem.id !== listDel.id);
+    this.deleteTask(listDel.id);
+    this.api.deleteList(listDel.id).then(message => {      
+      this.loadDataFromBackend();
+    });
   }
 
   updateList(listDel: TaskList) {
@@ -83,32 +78,14 @@ export class TrelloMethodsService {
   }
 
   addTask(name: string, listElem: TaskList) { 
-    let newtask: Task = {
-      idList: listElem.id,
-      idTask: Date.now(),
-      name: name,
-      description: '',
-      complete: false,
-      color: '#ffffff'
-    };
-    let pos = this.dataTrello.lists.indexOf(listElem);
-    try {
-      this.dataTrello.lists[pos].tasks.push(newtask);
-    } catch (err) {
-      this.dataTrello.lists[pos] = {
-        id: this.dataTrello.lists[pos].id,
-        name: this.dataTrello.lists[pos].name,
-        tasks: [newtask]
-      };
-    }
+    this.api.newTask(listElem.id, name).then(message => {      
+      this.loadDataFromBackend();
+    });
   }
 
-  deleteTask(task: Task) {
-    this.dataTrello.lists = this.dataTrello.lists.map( elem => {
-      if(elem.id === task.idList) {
-        elem.tasks = elem.tasks.filter( taskElem => taskElem.idTask !== task.idTask);
-      }
-      return elem;
+  deleteTask(taskId: number) {
+    this.api.deleteTask(taskId).then(message => console.log(message)).catch(message => {      
+      this.loadDataFromBackend();
     });
   }
 

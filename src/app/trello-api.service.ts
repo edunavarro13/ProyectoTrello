@@ -4,9 +4,7 @@ import {
 import {
   HttpClient
 } from '@angular/common/http';
-import {
-  reject
-} from 'q';
+import { Task } from './modelos.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -76,5 +74,12 @@ export class TrelloApiService {
   }
   deleteList(id: number): any {
     return this.api.delete('https://apitrello.herokuapp.com/list/' + id, this.headers).toPromise();
+  }
+  newTask(idlist: number, task: string): any {
+    const body = { idlist, task };
+    return this.api.post('https://apitrello.herokuapp.com/tasks/', body, this.headers).toPromise();
+  }
+  deleteTask(id: number): any {
+    return this.api.delete('https://apitrello.herokuapp.com/list/tasks/' + id, this.headers).toPromise();
   }
 }

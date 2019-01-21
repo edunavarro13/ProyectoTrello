@@ -4,7 +4,7 @@
 </header>
 
 <section>
-  <div class="body-section" *ngIf="service.getData()">
-    <app-lists *ngFor="let element of service.getData().lists" [list]="element" [serviceFather]="service"></app-lists>
+  <div class="body-section" *ngIf="data">
+    <app-lists *ngFor="let element of data.lists" [list]="element" [serviceFather]="service"></app-lists>
   </div>
 </section>
