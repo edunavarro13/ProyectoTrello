@@ -7,6 +7,8 @@ import {
   Task
 } from './modelos.interface';
 import { element } from '@angular/core/src/render3';
+import { TrelloApiService } from './trello-api.service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -14,9 +16,40 @@ import { element } from '@angular/core/src/render3';
 export class TrelloMethodsService {
 
   dataTrello: Data;
-  constructor() {}
+  constructor(private api: TrelloApiService, private router: Router) {}
+
+  loadDataFromBackend() {
+    this.api
+      .getLists()
+      .then((rawLists: Array<TaskList>) => {
+        console.log(rawLists);
+        const lists = rawLists.map(rawList => ({
+          id: rawList.id,
+          name: rawList.name,
+          tasks: [],
+        }));
+        Promise.all(
+          lists.map(async (list: TaskList) => {
+            list.tasks = await this.api.getTasks(list.id);
+            list.tasks = list.tasks.map((rawTask: any) => ({
+              idList: rawTask.idlist,
+              idTask: rawTask.id,
+              name: rawTask.task,
+              description: '',
+              complete: false,
+              color: 'white'
+            }));
+            return list;
+          }),
+        ).then(lists => {
+          this.dataTrello.lists = lists;
+        });
+      })
+      .catch(() => this.router.navigate(['/login']));
+  }
 
   getData() {
+    this.loadDataFromBackend();
     return this.dataTrello;
   }
 
@@ -56,8 +89,7 @@ export class TrelloMethodsService {
       name: name,
       description: '',
       complete: false,
-      color: '#ffffff',
-      expiration: null
+      color: '#ffffff'
     };
     let pos = this.dataTrello.lists.indexOf(listElem);
     try {

@@ -1,6 +1,12 @@
-import { Component } from '@angular/core';
-import { TrelloApiService } from '../trello-api.service';
-import {Router} from '@angular/router';
+import {
+  Component
+} from '@angular/core';
+import {
+  TrelloApiService
+} from '../trello-api.service';
+import {
+  Router
+} from '@angular/router';
 
 @Component({
   selector: 'app-register-view',
@@ -9,17 +15,22 @@ import {Router} from '@angular/router';
 })
 export class RegisterViewComponent {
 
-  usernameRegister: string;
-  passRegister: string;
-  constructor(private apiService: TrelloApiService, private routeAtr: Router) { }
+  usernameRegister: string = '';
+  passRegister: string = '';
+  constructor(private apiService: TrelloApiService, private routeAtr: Router) {}
 
-  register() {
-    this.apiService.register(this.usernameRegister.trim(), this.passRegister.trim())
-    .then( response => {
-      if(confirm(`Your user ${this.usernameRegister} is registered`)) {
-        this.routeAtr.navigate(['/login']);
-      }
-    });
+  register() {    
+    if (this.usernameRegister.trim() !== '' && this.passRegister.trim() !== '') {      
+      this.apiService.register(this.usernameRegister.trim(), this.passRegister.trim())
+        .then(response => {
+          if (confirm(`Your user ${this.usernameRegister} is registered`)) {
+            this.routeAtr.navigate(['/login']);
+          }
+        });
+    }
+    else {
+      alert(`Username and password can not be empty.`);
+    }
   }
 
 }

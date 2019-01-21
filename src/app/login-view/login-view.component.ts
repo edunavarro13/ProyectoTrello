@@ -15,14 +15,18 @@ import {
 })
 export class LoginViewComponent {
 
-  usernameLogin: string;
-  passLogin: string;
+  usernameLogin: string = '';
+  passLogin: string = '';
   constructor(private apiService: TrelloApiService, private routerLog: Router) {}
 
-  login() {
-    this.apiService.login(this.usernameLogin.trim(), this.passLogin.trim()).then(response => {     
-      this.routerLog.navigate(['/trello']);
-    }).catch(console.error);
+  login() {    
+    if (this.usernameLogin.trim() !== '' && this.passLogin.trim() !== '') {
+      this.apiService.login(this.usernameLogin.trim(), this.passLogin.trim()).then(response => {
+        this.routerLog.navigate(['/trello']);
+      }).catch(console.error);
+    } else {
+      alert(`Username and password can not be empty.`);
+    }
   }
 
 }

@@ -16,7 +16,7 @@ header {
 section {
   min-height: 87vh;
   width: auto;
-  background: linear-gradient(to bottom, rgb(226, 114, 8), rgb(236, 174, 3));
+  background: linear-gradient(to top, rgb(76, 76, 187), rgb(99, 151, 228));
   box-sizing: border-box;
   display: flex;
   flex-direction: row;
@@ -46,10 +46,18 @@ section {
   margin-bottom: 3vh;
 }
 
-.button-submit {
+.div-button-submit {
   display: grid;
   justify-content: center;
   align-items: center;
+}
+.button-submit {
+  height: 6vh;
+  width: 10vw;
+  border-radius: 5px;
+  background: linear-gradient(to bottom, rgb(4, 4, 182), rgb(4, 97, 236));
+  color: white;
+  font-weight: bold;
 }
 
 label {

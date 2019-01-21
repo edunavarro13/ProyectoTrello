@@ -4,11 +4,13 @@
 </header>
 
 <section>
-  <form (submit)="login()">
+  <div>
     <label>Username:</label>
-    <p><input class="input-agregar" type="text" placeholder="Username" name="username" [(ngModel)]="usernameLogin"></p>
+    <p><input class="input-agregar" type="text" placeholder="Username" name="username" [(ngModel)]="usernameLogin"
+        required></p>
     <label>Password:</label>
-    <p><input class="input-agregar" type="password" placeholder="Password" name="pass" [(ngModel)]="passLogin"></p>
-    <div class="button-submit"><input type="submit" value="Login"></div>
-  </form>
+    <p><input class="input-agregar" type="password" placeholder="Password" name="pass" [(ngModel)]="passLogin"
+        required></p>
+    <div class="div-button-submit"><input class="button-submit" type="submit" value="Login" (click)="login()"></div>
+  </div>
 </section>

@@ -8,7 +8,8 @@ const routes: Routes = [
   { path: 'trello', component: TrelloPageComponent },
   { path: 'register', component: RegisterViewComponent },
   { path: 'login', component: LoginViewComponent },
-  { path: '', redirectTo: '/login', pathMatch: 'full' }
+  //{ path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: '**', redirectTo: 'login', pathMatch: 'full' },
 ];
 
 @NgModule({

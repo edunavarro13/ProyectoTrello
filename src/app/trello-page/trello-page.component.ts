@@ -6,6 +6,8 @@ import {
   TrelloMethodsService
 } from '../trello-methods.service';
 
+import { Data } from '../modelos.interface';
+
 @Component({
   selector: 'app-trello-page',
   templateUrl: './trello-page.component.html',
@@ -13,11 +15,14 @@ import {
 })
 export class TrelloPageComponent implements OnInit {
 
+  data: Data;
   inputList: string;
 
   constructor(private service: TrelloMethodsService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.data = this.service.getData();
+  }
 
   addNewList() {
     if (this.inputList) {

@@ -1,12 +1,23 @@
-<h1>Register</h1>
-<p>
-    <input type="button" routerLink="/login" routerLinkActive="active" value="Login">
-</p>
+<header>
+  <h1>Register</h1>
+  <input class="to-reg-log" type="button" routerLink="/login" routerLinkActive="active" value="Login">
+</header>
 
-<div>
-  <form (submit)="register()">
-    <input type="text" placeholder="Username" name="username" [(ngModel)]="usernameRegister">
-    <input type="password" placeholder="Password" name="pass" [(ngModel)]="passRegister">
-    <input type="submit" value="Register">
-  </form>
-</div>
+<section>
+  <!-- <form (submit)="register()">
+    <label>Username:</label>
+    <p><input class="input-agregar" type="text" placeholder="Username" name="username" [(ngModel)]="usernameRegister" required></p>
+    <label>Password:</label>
+    <p><input class="input-agregar" type="password" placeholder="Password" name="pass" [(ngModel)]="passRegister" required></p>
+    <div class="div-button-submit"><input class="button-submit" type="submit" value="Register"></div>
+  </form> -->
+  <div>
+    <label>Username:</label>
+    <p><input class="input-agregar" type="text" placeholder="Username" name="username" [(ngModel)]="usernameRegister"
+        required></p>
+    <label>Password:</label>
+    <p><input class="input-agregar" type="password" placeholder="Password" name="pass" [(ngModel)]="passRegister"
+        required></p>
+    <div class="div-button-submit"><input class="button-submit" type="submit" value="Register" (click)="register()"></div>
+  </div>
+</section>

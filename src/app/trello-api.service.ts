@@ -49,8 +49,32 @@ export class TrelloApiService {
         }
       }));
   }
-  getLists() {
-    this.api.get('https://apitrello.herokuapp.com/lists', this.headers).toPromise()
-    .then(console.log).catch(console.error);
+  getLists(): any {
+    return this.api.get('https://apitrello.herokuapp.com/list', this.headers).toPromise();
+  }
+  getTasks(idlist: number): any {
+    return new Promise((resolve, reject) => {
+      this.api
+        .get('https://apitrello.herokuapp.com/list/tasks/' + idlist, this.headers)
+        .toPromise()
+        .then(tasks => {
+          if (tasks) {
+            resolve(tasks);
+          } else {
+            resolve([]);
+          }
+        })
+        .catch(error => {
+          console.log(error);
+          resolve([]);
+        });
+    });
+  }
+  newList(name: string): any {
+    const body = { name };
+    return this.api.post('https://apitrello.herokuapp.com/list/', body, this.headers).toPromise();
+  }
+  deleteList(id: number): any {
+    return this.api.delete('https://apitrello.herokuapp.com/list/' + id, this.headers).toPromise();
   }
 }
