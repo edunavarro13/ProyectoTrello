@@ -7,6 +7,7 @@ import {
 import {
   Router
 } from '@angular/router';
+import { NotificationsService } from 'angular2-notifications';
 
 @Component({
   selector: 'app-register-view',
@@ -17,19 +18,32 @@ export class RegisterViewComponent {
 
   usernameRegister: string = '';
   passRegister: string = '';
-  constructor(private apiService: TrelloApiService, private routeAtr: Router) {}
+  constructor(private apiService: TrelloApiService, private routeAtr: Router, private notification: NotificationsService) {}
 
   register() {    
     if (this.usernameRegister.trim() !== '' && this.passRegister.trim() !== '') {      
       this.apiService.register(this.usernameRegister.trim(), this.passRegister.trim())
         .then(response => {
-          if (confirm(`Your user ${this.usernameRegister} is registered`)) {
-            this.routeAtr.navigate(['/login']);
-          }
-        });
+          this.notification.success('SUCCESS!', `Your user ${this.usernameRegister} is registered.`, {
+            timeOut: 3000,
+            showProgressBar: true,
+            pauseOnHover: true,
+            clickToClose: true
+          });
+        }).catch(errmes => this.notification.error('ERROR!', errmes, {
+          timeOut: 3000,
+          showProgressBar: true,
+          pauseOnHover: true,
+          clickToClose: true
+        }));
     }
     else {
-      alert(`Username and password can not be empty.`);
+      this.notification.error('ERROR!', `Username and password can not be empty.`, {
+        timeOut: 3000,
+        showProgressBar: true,
+        pauseOnHover: true,
+        clickToClose: true
+      });
     }
   }
 

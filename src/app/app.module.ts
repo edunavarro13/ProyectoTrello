@@ -16,7 +16,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { ColorPickerModule } from 'ngx-color-picker';
 import { LoginViewComponent } from './login-view/login-view.component';
 import { RegisterViewComponent } from './register-view/register-view.component';
-// import { AlertIfModule } from 'alertifyjs';
+
+import { SimpleNotificationsModule } from 'angular2-notifications';
+import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,10 @@ import { RegisterViewComponent } from './register-view/register-view.component';
     AppRoutingModule,
     FormsModule,
     ColorPickerModule,
-    HttpClientModule
+    HttpClientModule,
+    SimpleNotificationsModule.forRoot(),
+    BrowserAnimationsModule,
+    NoopAnimationsModule
   ],
   providers: [TrelloMethodsService, TrelloApiService],
   bootstrap: [AppComponent]

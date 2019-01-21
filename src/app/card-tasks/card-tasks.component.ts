@@ -1,6 +1,5 @@
 import {
   Component,
-  OnInit,
   Input
 } from '@angular/core';
 import {
@@ -9,13 +8,14 @@ import {
 import {
   TrelloMethodsService
 } from '../trello-methods.service';
+import { NotificationsService } from 'angular2-notifications';
 
 @Component({
   selector: 'app-card-tasks',
   templateUrl: './card-tasks.component.html',
   styleUrls: ['./card-tasks.component.scss']
 })
-export class CardTasksComponent implements OnInit {
+export class CardTasksComponent {
 
   @Input() task: Task;
   @Input() grandFatherService: TrelloMethodsService;
@@ -25,16 +25,17 @@ export class CardTasksComponent implements OnInit {
   modDescTask: boolean = false;
 
   color: string;
-  constructor() {}
-
-  ngOnInit() {
-    console.log("entra");
-
-  }
+  constructor( private notification: NotificationsService) {}
 
   deleteCardTask() {
     if (confirm(`Are you sure you want to delete ALL THE TASKS?`)) {
       this.grandFatherService.deleteTask(this.task.idList);
+      this.notification.success('SUCCESS!', `All the tasks have been successfully deleted.`, {
+        timeOut: 3000,
+        showProgressBar: true,
+        pauseOnHover: true,
+        clickToClose: true
+      });
     }
   }
 
@@ -46,7 +47,12 @@ export class CardTasksComponent implements OnInit {
       this.modTask = false;
     }
     else {
-      alert(`List's name can not be empty!`);
+      this.notification.error('ERROR!', `Task's name can not be empty!`, {
+        timeOut: 3000,
+        showProgressBar: true,
+        pauseOnHover: true,
+        clickToClose: true
+      });
     }
   }
 

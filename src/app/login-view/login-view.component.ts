@@ -7,6 +7,9 @@ import {
 import {
   Router
 } from '@angular/router';
+import {
+  NotificationsService
+} from 'angular2-notifications';
 
 @Component({
   selector: 'app-login-view',
@@ -17,15 +20,25 @@ export class LoginViewComponent {
 
   usernameLogin: string = '';
   passLogin: string = '';
-  constructor(private apiService: TrelloApiService, private routerLog: Router) {}
+  constructor(private apiService: TrelloApiService, private routerLog: Router, private notification: NotificationsService) {}
 
-  login() {    
+  login() {
     if (this.usernameLogin.trim() !== '' && this.passLogin.trim() !== '') {
       this.apiService.login(this.usernameLogin.trim(), this.passLogin.trim()).then(response => {
         this.routerLog.navigate(['/trello']);
-      }).catch(console.error);
+      }).catch(errmes => this.notification.error('ERROR!', errmes, {
+        timeOut: 3000,
+        showProgressBar: true,
+        pauseOnHover: true,
+        clickToClose: true
+      }));
     } else {
-      alert(`Username and password can not be empty.`);
+      this.notification.error('ERROR!', `Username and password can not be empty.`, {
+        timeOut: 3000,
+        showProgressBar: true,
+        pauseOnHover: true,
+        clickToClose: true
+      });
     }
   }
 

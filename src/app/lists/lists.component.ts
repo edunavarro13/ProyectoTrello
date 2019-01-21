@@ -9,6 +9,7 @@ import {
 import {
   TrelloMethodsService
 } from '../trello-methods.service';
+import { NotificationsService } from 'angular2-notifications';
 
 @Component({
   selector: 'app-lists',
@@ -23,13 +24,19 @@ export class ListsComponent implements OnInit {
   modName: boolean = false;
   inputTask: string;
 
-  constructor() {}
+  constructor( private notification: NotificationsService) {}
 
   ngOnInit() {}
 
   delete() {
     if (confirm(`Are you sure you want to delete the list: ${this.list.name}?`)) {
       this.serviceFather.deleteList(this.list);
+      this.notification.success('SUCCESS!', `The list ${this.list.name} has been successfully deleted.`, {
+        timeOut: 3000,
+        showProgressBar: true,
+        pauseOnHover: true,
+        clickToClose: true
+      });
     }
   }
   update(ev) {
@@ -40,7 +47,12 @@ export class ListsComponent implements OnInit {
       this.modName = false;
     }
     else {
-      alert(`List's name can not be empty!`);
+      this.notification.error('ERROR!', `List's name can not be empty!`, {
+        timeOut: 3000,
+        showProgressBar: true,
+        pauseOnHover: true,
+        clickToClose: true
+      });
     }
   }
 
@@ -51,7 +63,12 @@ export class ListsComponent implements OnInit {
       this.inputTask = '';
     }
     else {
-      alert(`List's name can not be empty!`);
+      this.notification.error('ERROR!', `Task's name can not be empty!`, {
+        timeOut: 3000,
+        showProgressBar: true,
+        pauseOnHover: true,
+        clickToClose: true
+      });
     }
   }
 
