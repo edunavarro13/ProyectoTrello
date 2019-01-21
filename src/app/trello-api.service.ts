@@ -12,7 +12,7 @@ import { Task } from './modelos.interface';
 export class TrelloApiService {
 
   jwt: string;
-  headers: object;
+  headers: object = JSON.parse(localStorage.getItem('headers')) || '';
 
   constructor(private api: HttpClient) {}
 
@@ -39,6 +39,7 @@ export class TrelloApiService {
               Authorization: `Bearer ${this.jwt}`
             }
           }
+          localStorage.setItem('headers', JSON.stringify(this.headers));
           resolve(badResponse.error.text);
         } else if (badResponse.status === 401) {
           reject(`Wrong password`);
@@ -82,4 +83,5 @@ export class TrelloApiService {
   deleteTask(id: number): any {
     return this.api.delete('https://apitrello.herokuapp.com/list/tasks/' + id, this.headers).toPromise();
   }
+  
 }
