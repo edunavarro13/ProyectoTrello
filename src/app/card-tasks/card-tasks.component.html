@@ -18,8 +18,8 @@
       <label *ngIf="!modDescTask" (dblclick)="modDescTask = !modDescTask">Description: {{ task.description }}</label>
       <input *ngIf="modDescTask" class="input-name input-desc" type="text" value="{{ task.description }}" placeholder="Description"
         (keyup.enter)="updateDescriptionTask($event)">
-      <input *ngIf="!modDescTask" type="button" class="button-list button-edit" value="✏️" (click)="modDescTask = !modDescTask">
-      <input *ngIf="modDescTask" type="button" class="button-list button-edit" value="📝" (click)="modDescTask = !modDescTask">
+      <button *ngIf="!modDescTask" class="button-list button-edit" (click)="modDescTask = !modDescTask"><i class="material-icons">create</i></button>
+      <button *ngIf="modDescTask" class="button-list button-edit" (click)="modDescTask = !modDescTask"><i class="material-icons">description</i></button>
     </p>
     <input class="size-small" [(colorPicker)]="color" [style.background]="color" (colorPickerChange)="updateColorTask($event)" />🖌
   </div>
