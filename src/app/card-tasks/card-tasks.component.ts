@@ -43,7 +43,7 @@ export class CardTasksComponent {
     // Comprobamos que no sea vacio
     if (ev.target.value) {
       this.task.name = ev.target.value.trim();
-      this.grandFatherService.updateTask(this.task);
+      this.grandFatherService.updateTaskName(this.task);
       this.modTask = false;
     }
     else {

@@ -68,12 +68,8 @@ export class TrelloMethodsService {
   }
 
   updateList(listDel: TaskList) {
-    this.dataTrello.lists = this.dataTrello.lists.map(elem => {
-      if (elem.id == listDel.id) {
-        return listDel;
-      } else {
-        return elem;
-      }
+    this.api.updateList(listDel.name, listDel.id).then(message => {      
+      this.loadDataFromBackend();
     });
   }
 
@@ -85,6 +81,12 @@ export class TrelloMethodsService {
 
   deleteTask(taskId: number) {
     this.api.deleteTask(taskId).then(message => console.log(message)).catch(() => {      
+      this.loadDataFromBackend();
+    });
+  }
+
+  updateTaskName(taskUp: Task) {
+    this.api.updateTask(taskUp.name, taskUp.idTask).then(message => {      
       this.loadDataFromBackend();
     });
   }

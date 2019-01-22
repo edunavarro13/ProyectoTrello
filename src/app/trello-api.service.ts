@@ -76,6 +76,10 @@ export class TrelloApiService {
   deleteList(id: number): any {
     return this.api.delete('https://apitrello.herokuapp.com/list/' + id, this.headers).toPromise();
   }
+  updateList(name: string, idList: number) {
+    const body = { name };
+    return this.api.put(`https://apitrello.herokuapp.com/list/${idList}`, body, this.headers).toPromise();
+  }
   newTask(idlist: number, task: string): any {
     const body = { idlist, task };
     return this.api.post('https://apitrello.herokuapp.com/tasks/', body, this.headers).toPromise();
@@ -83,5 +87,8 @@ export class TrelloApiService {
   deleteTask(id: number): any {
     return this.api.delete('https://apitrello.herokuapp.com/list/tasks/' + id, this.headers).toPromise();
   }
-  
+  updateTask(task: string, idTask: number) {
+    const body = { task };    
+    return this.api.put(`https://apitrello.herokuapp.com/tasks/${idTask}`, body, this.headers).toPromise();
+  }
 }
