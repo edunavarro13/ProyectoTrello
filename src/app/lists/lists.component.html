@@ -2,17 +2,20 @@
   <div class="section-list-name">
     <div>
       <label *ngIf="!modName" class="list-name" (dblclick)="modName = !modName">{{ list.name }}</label>
-      <input *ngIf="modName" class="input-name" type="text" value="{{ list.name }}" placeholder="Name" (keyup.enter)="update($event)" (blur)="modName = !modName">
+      <input *ngIf="modName" class="input-name" type="text" value="{{ list.name }}" placeholder="Name" (keyup.enter)="update($event)"
+        (blur)="modName = !modName">
     </div>
     <div class="controls">
-      <input *ngIf="!modName" type="button" class="button-list button-edit" value="✏️" (click)="modName = !modName">
-      <input *ngIf="modName" type="button" class="button-list button-edit" value="📝" (click)="modName = !modName">
-      <input type="button" class="button-list" value="❌" (click)="delete()">
+      <button *ngIf="!modName" class="button-list button-edit" (click)="modName = !modName"><i class="material-icons">create</i></button>
+      <button *ngIf="modName" class="button-list button-edit" (click)="modName = !modName"><i class="material-icons">description</i></button>
+      <button class="button-list" (click)="delete()"><i class="material-icons">delete</i></button>
     </div>
   </div>
   <div *ngIf="list.tasks">
     <app-card-tasks *ngFor="let taskElem of list.tasks" [task]="taskElem" [grandFatherService]="serviceFather"></app-card-tasks>
   </div>
-  <input [(ngModel)]="inputTask" type="text" class="input-name" placeholder="Add task" (keyup.enter)="newTask()">
-  <input class="button-list" type="button" value="➕" (click)="delete()">
+  <div class="list-inputs">
+    <button class="button-add-task" (click)="newTask()"><i class="material-icons">note_add</i></button>
+    <input [(ngModel)]="inputTask" type="text" class="input-name" placeholder="Add task" (keyup.enter)="newTask()">
+  </div>
 </section>

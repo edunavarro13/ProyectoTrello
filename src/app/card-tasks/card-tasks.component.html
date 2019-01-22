@@ -1,21 +1,23 @@
 <div class="card-grid">
   <div class="card-name">
     <label *ngIf="!modTask" class="list-name" (dblclick)="modTask = !modTask">{{ task.name }}</label>
-    <input *ngIf="modTask" class="input-name" type="text" value="{{ task.name }}" placeholder="Name" (keyup.enter)="updateNameTask($event)" (blur)="modTask = !modTask">
+    <input *ngIf="modTask" class="input-name" type="text" value="{{ task.name }}" placeholder="Name" (keyup.enter)="updateNameTask($event)"
+      (blur)="modTask = !modTask">
   </div>
   <div class="controls card-buttons">
-    <input *ngIf="!modTask" type="button" class="button-list button-edit" value="✏️" (click)="modTask = !modTask">
-    <input *ngIf="modTask" type="button" class="button-list button-edit" value="📝" (click)="modTask = !modTask">
-    <input type="button" class="button-list" value="❌" (click)="deleteCardTask()">
-    <input *ngIf="!watchTask" type="button" class="button-list" value="🔍" (click)="watchTask = !watchTask">
-    <input *ngIf="watchTask" type="button" class="button-list" value="👀" (click)="watchTask = !watchTask">
+    <button *ngIf="!modTask" class="button-list button-edit" (click)="modTask = !modTask"><i class="material-icons">create</i></button>
+    <button *ngIf="modTask" class="button-list button-edit" (click)="modTask = !modTask"><i class="material-icons">description</i></button>
+    <button class="button-list" (click)="deleteCardTask()"><i class="material-icons">delete</i></button>
+    <button *ngIf="!watchTask" class="button-list" (click)="watchTask = !watchTask"><i class="material-icons">list</i></button>
+    <button *ngIf="watchTask" class="button-list" (click)="watchTask = !watchTask"><i class="material-icons">view_list</i></button>
   </div>
   <div [style.background]="task.color" class="color-border">
   </div>
   <div *ngIf="watchTask" class="details-task">
     <p>
       <label *ngIf="!modDescTask" (dblclick)="modDescTask = !modDescTask">Description: {{ task.description }}</label>
-      <input *ngIf="modDescTask" class="input-name input-desc" type="text" value="{{ task.description }}" placeholder="Description" (keyup.enter)="updateDescriptionTask($event)">
+      <input *ngIf="modDescTask" class="input-name input-desc" type="text" value="{{ task.description }}" placeholder="Description"
+        (keyup.enter)="updateDescriptionTask($event)">
       <input *ngIf="!modDescTask" type="button" class="button-list button-edit" value="✏️" (click)="modDescTask = !modDescTask">
       <input *ngIf="modDescTask" type="button" class="button-list button-edit" value="📝" (click)="modDescTask = !modDescTask">
     </p>
