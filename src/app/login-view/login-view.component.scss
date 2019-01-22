@@ -3,7 +3,7 @@ header {
   width: auto;
   background: linear-gradient(to bottom, rgb(4, 4, 182), rgb(4, 97, 236));
   display: grid;
-  grid-template-columns: 6fr 1fr;
+  grid-template-columns: 2fr 1fr;
   justify-content: center;
   align-items: center;
   color: white;
@@ -54,6 +54,7 @@ section {
 .button-submit {
   height: 6vh;
   width: 10vw;
+  min-width: 100px;
   border-radius: 5px;
   background: linear-gradient(to bottom, rgb(4, 4, 182), rgb(4, 97, 236));
   color: white;
