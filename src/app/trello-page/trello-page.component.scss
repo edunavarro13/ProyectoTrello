@@ -3,7 +3,7 @@ header {
   width: auto;
   background: linear-gradient(to bottom, rgb(4, 4, 182), rgb(4, 97, 236));
   display: grid;
-  grid-template-columns: 85% 15%;
+  grid-template-columns: 20% 60% 20%;
   justify-content: center;
   align-items: center;
   justify-items: center;
@@ -26,28 +26,36 @@ section {
   flex-wrap: wrap;
 }
 
-
-
-.input-agregar {
+.input-add {
   border-radius: 5px;
   height: 3vh;
   background: linear-gradient(to bottom, rgb(180, 180, 180), rgb(236, 236, 236));
 }
 
-.boton-agregar {
+.button-add {
   margin-left: 5px;
   text-align: center;
   height: 5vh;
   width: 3.5vw;
   border-radius: 50%;
 }
-
+.section-log-out{
+  border-left: 1px silver solid;
+  border-right: 1px silver solid;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 1vw;
+  padding-right: 1vw;
+}
 .log-out {
   font-size: 8vh;
-  background-color: Transparent;
-  background-repeat: no-repeat;
-  border: none;
-  cursor: pointer;
-  overflow: hidden;
-  outline: none;
+}
+.label-log-out {
+  font-size: 3.5vh;
+}
+.label-trello {
+  font-size: 6vh;
+  font-weight: bold;
 }

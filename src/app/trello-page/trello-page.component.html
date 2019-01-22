@@ -1,10 +1,13 @@
 <header>
   <div>
-    <input [(ngModel)]="inputList" class="input-agregar" type="text" placeholder="Add list" (keyup.enter)="addNewList()">
-    <button class="boton-agregar" (click)="addNewList()">➕</button>
+    <label class="label-trello">Trello</label>
   </div>
   <div>
-    <button class="log-out">👨‍💻</button>
+    <input [(ngModel)]="inputList" class="input-add" type="text" placeholder="Add list" (keyup.enter)="addNewList()">
+    <button class="button-add" (click)="addNewList()">➕</button>
+  </div>
+  <div class="section-log-out">
+    <a class="log-out" (click)="logOut()">👨‍💻<label class="label-log-out">Log out</label></a>
   </div>
 </header>
 

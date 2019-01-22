@@ -8,6 +8,7 @@ import {
 
 import { Data } from '../modelos.interface';
 import { NotificationsService } from 'angular2-notifications';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-trello-page',
@@ -19,7 +20,8 @@ export class TrelloPageComponent implements OnInit {
   data: Data;
   inputList: string;
 
-  constructor(private service: TrelloMethodsService, private notification: NotificationsService) {}
+  constructor(private service: TrelloMethodsService, private notification: NotificationsService,
+    private routerLog: Router) {}
 
   ngOnInit() {
     this.data = this.service.getData();
@@ -37,6 +39,11 @@ export class TrelloPageComponent implements OnInit {
         clickToClose: true
       });
     }
+  }
+
+  logOut() {
+    localStorage.clear();
+    this.routerLog.navigate(['/login']);
   }
 
 }
