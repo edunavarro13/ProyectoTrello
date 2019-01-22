@@ -6,9 +6,15 @@ import {
   TrelloMethodsService
 } from '../trello-methods.service';
 
-import { Data } from '../modelos.interface';
-import { NotificationsService } from 'angular2-notifications';
-import { Router } from '@angular/router';
+import {
+  Data
+} from '../modelos.interface';
+import {
+  NotificationsService
+} from 'angular2-notifications';
+import {
+  Router
+} from '@angular/router';
 
 @Component({
   selector: 'app-trello-page',
@@ -31,7 +37,7 @@ export class TrelloPageComponent implements OnInit {
     if (this.inputList) {
       this.service.addList(this.inputList);
       this.inputList = '';
-    } else {      
+    } else {
       this.notification.error('ERROR!', `List's name can not be empty!`, {
         timeOut: 3000,
         showProgressBar: true,
@@ -42,8 +48,10 @@ export class TrelloPageComponent implements OnInit {
   }
 
   logOut() {
-    localStorage.clear();
-    this.routerLog.navigate(['/login']);
+    if (confirm(`Are you sure you want to Log out?`)) {
+      localStorage.clear();
+      this.routerLog.navigate(['/login']);
+    }
   }
 
 }
